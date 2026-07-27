@@ -1,0 +1,262 @@
+﻿<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Palma Real - DE LOS RIOS S.A.</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="icon" type="image/jpeg" href="logo-tractor.jpg">
+
+    <style>
+        :root {
+            --verde-principal: #2c4a3e;
+            --verde-claro: #4a6b5d;
+            --beige-fondo: #fcf9f5;
+            --beige-fuerte: #f3ede2;
+            --texto-oscuro: #333333;
+            --blanco: #ffffff;
+            --sombra: rgba(0, 0, 0, 0.08);
+            --transicion: all 0.3s ease;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', sans-serif;
+        }
+
+        body {
+            background-color: var(--beige-fondo);
+            color: var(--texto-oscuro);
+            line-height: 1.6;
+        }
+
+        .navbar {
+            background-color: var(--blanco);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1.2rem 8%;
+            box-shadow: 0 2px 10px var(--sombra);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .logo {
+            font-size: 1.4rem;
+            font-weight: bold;
+            color: var(--verde-principal);
+            letter-spacing: 1.5px;
+        }
+
+        .btn-volver {
+            color: var(--verde-principal);
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            text-decoration: none;
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: 3rem auto;
+            padding: 0 2rem;
+        }
+
+        .propiedad-header {
+            margin-bottom: 2rem;
+        }
+
+            .propiedad-header h1 {
+                color: var(--verde-principal);
+                font-size: 2.5rem;
+            }
+
+        .main-img {
+            width: 100%;
+            height: 450px;
+            background: url('Palmareal.jpeg') no-repeat center center/cover;
+            border-radius: 8px;
+            margin-bottom: 2.5rem;
+            box-shadow: 0 4px 20px var(--sombra);
+        }
+
+        .info-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 2.5rem;
+        }
+
+        .card-info-interior {
+            background: var(--blanco);
+            padding: 2.5rem;
+            border-radius: 8px;
+            box-shadow: 0 4px 15px var(--sombra);
+            margin-bottom: 2rem;
+        }
+
+        details {
+            background: var(--blanco);
+            border-radius: 8px;
+            box-shadow: 0 4px 15px var(--sombra);
+            margin-bottom: 1rem;
+            border: 1px solid transparent;
+        }
+
+        summary {
+            padding: 1.5rem;
+            font-size: 1.2rem;
+            font-weight: bold;
+            color: var(--verde-principal);
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+            summary::after {
+                content: '\f078';
+                font-family: 'Font Awesome 6 Free';
+                font-weight: 900;
+                color: var(--verde-claro);
+            }
+
+        details[open] summary::after {
+            transform: rotate(180deg);
+        }
+
+        .desplegable-contenido {
+            padding: 0 2rem 2rem 2rem;
+        }
+
+        .lista-detalles {
+            list-style: none;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 0.8rem;
+        }
+
+            .lista-detalles li {
+                padding: 0.5rem 0;
+                border-bottom: 1px solid rgba(0,0,0,0.04);
+                display: flex;
+                gap: 0.6rem;
+                align-items: center;
+            }
+
+                .lista-detalles li i {
+                    color: var(--verde-claro);
+                }
+
+        .ficha-tecnica {
+            background: var(--beige-fuerte);
+            padding: 2rem;
+            border-radius: 8px;
+            position: sticky;
+            top: 100px;
+        }
+
+        .ficha-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 0.7rem 0;
+            border-bottom: 1px solid rgba(0,0,0,0.06);
+        }
+
+        .btn-whatsapp-directo {
+            display: block;
+            background-color: #25D366;
+            color: white;
+            text-align: center;
+            padding: 1.1rem;
+            border-radius: 6px;
+            text-decoration: none;
+            margin-top: 1.5rem;
+            font-weight: bold;
+        }
+
+        @media (max-width: 768px) {
+            .info-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <nav class="navbar">
+        <div class="logo">DE LOS RIOS S.A.</div>
+        <a href="index.html" class="btn-volver"><i class="fa-solid fa-arrow-left"></i> Volver</a>
+    </nav>
+
+    <div class="container">
+        <div class="propiedad-header">
+            <h1>Campo Palma Real</h1>
+            <p><i class="fa-solid fa-location-dot"></i> Quilino, Córdoba (A 25 km del pueblo)</p>
+        </div>
+
+        <div class="main-img"></div>
+
+        <div class="info-grid">
+            <div class="descripcion-block">
+                <div class="card-info-interior">
+                    <h3>Descripción General</h3>
+                    <p>Palma Real se presenta como una unidad productiva integral y versátil en la zona de Quilino. Con 580 hectáreas de extensión, destaca por su infraestructura diseñada para diversificar la producción, incluyendo tanto instalaciones ganaderas de alta eficiencia como sectores específicos para cría de lechones.</p>
+                </div>
+
+                <details open>
+                    <summary>INSTALACIONES <i class="fa-solid fa-layer-group"></i></summary>
+                    <div class="desplegable-contenido">
+                        <ul class="lista-detalles">
+                            <li><i class="fa-solid fa-circle-check"></i> Alambrado perimetral completo.</li>
+                            <li><i class="fa-solid fa-circle-check"></i> 6 Potreros con rolado selectivo (Implantados: Gatton Panic y Buffel Texas).</li>
+                            <li><i class="fa-solid fa-circle-check"></i> Perforación a 100m (4,000 L/h).</li>
+                            <li><i class="fa-solid fa-circle-check"></i> 1 Molino y Tanque australiano de 150,000 L.</li>
+                            <li><i class="fa-solid fa-circle-check"></i> Casa (3 hab, 2 baños) con energía solar.</li>
+                            <li><i class="fa-solid fa-circle-check"></i> Galpón de herramientas (6x6m).</li>
+                            <li><i class="fa-solid fa-circle-check"></i> Grupo electrógeno de 5KVA.</li>
+                            <li><i class="fa-solid fa-circle-check"></i> Manga, balanza (6 animales), bañadero y ensenada de trabajo.</li>
+                            <li><i class="fa-solid fa-circle-check"></i> Instalación específica para cría de lechones.</li>
+                        </ul>
+                    </div>
+                </details>
+
+                <details>
+                    <summary>MAQUINARIA Y HERRAMIENTAS <i class="fa-solid fa-tractor"></i></summary>
+                    <div class="desplegable-contenido">
+                        <ul class="lista-detalles">
+                            <li><i class="fa-solid fa-wrench"></i> Tractor John Deere 5020 (Pos-desmonte) con cobertura.</li>
+                            <li><i class="fa-solid fa-wrench"></i> Tractor Fiat (Pos-desmonte) con cobertura.</li>
+                            <li><i class="fa-solid fa-wrench"></i> Rolo para mantenimiento de renoval (2.5m).</li>
+                            <li><i class="fa-solid fa-wrench"></i> Cisterna de gasoil (1,000 L) con trailer.</li>
+                            <li><i class="fa-solid fa-wrench"></i> Rastra de disco mediano.</li>
+                            <li><i class="fa-solid fa-wrench"></i> Carro de trabajo.</li>
+                        </ul>
+                    </div>
+                </details>
+
+                <details>
+                    <summary>HACIENDA <i class="fa-solid fa-cow"></i></summary>
+                    <div class="desplegable-contenido">
+                        <p style="padding: 1rem; color: #888;">Pendiente de carga de datos.</p>
+                    </div>
+                </details>
+            </div>
+
+            <div class="sidebar">
+                <div class="ficha-tecnica">
+                    <h3>Ficha Técnica</h3>
+                    <div class="ficha-item"><strong>Superficie:</strong> <span>580 ha</span></div>
+                    <div class="ficha-item"><strong>Ubicación:</strong> <span>Quilino</span></div>
+                    <div class="ficha-item"><strong>Distancia Capital:</strong> <span>170 Km</span></div>
+                    <div class="ficha-item"><strong>Precio:</strong> <span>Consulte Precio</span></div>
+                    <a href="https://wa.me/5493514035617?text=Me%20interesa%20informaci%C3%B3n%20sobre%20Campo%20Palma%20Real." class="btn-whatsapp-directo"><i class="fa-brands fa-whatsapp"></i> Consultar WhatsApp</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

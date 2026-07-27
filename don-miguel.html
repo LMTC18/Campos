@@ -1,0 +1,453 @@
+﻿<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Estancia Don Miguel - DE LOS RIOS S.A.</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- Logo del Tractor en la pestaña -->
+    <link rel="icon" type="image/jpeg" href="logo-tractor.jpg">
+
+    <style>
+        /* --- VARIABLES DE DISEÑO (Misma Paleta Campestre) --- */
+        :root {
+            --verde-principal: #2c4a3e;
+            --verde-claro: #4a6b5d;
+            --beige-fondo: #fcf9f5;
+            --beige-fuerte: #f3ede2;
+            --texto-oscuro: #333333;
+            --blanco: #ffffff;
+            --sombra: rgba(0, 0, 0, 0.08);
+            --transicion: all 0.3s ease;
+        }
+
+        /* --- ESTILOS GENERALES --- */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: var(--beige-fondo);
+            color: var(--texto-oscuro);
+            line-height: 1.6;
+        }
+
+        /* --- NAVBAR --- */
+        .navbar {
+            background-color: var(--blanco);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1.2rem 8%;
+            box-shadow: 0 2px 10px var(--sombra);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .logo {
+            font-size: 1.4rem;
+            font-weight: bold;
+            color: var(--verde-principal);
+            letter-spacing: 1.5px;
+        }
+
+        .btn-volver {
+            color: var(--verde-principal);
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            text-decoration: none;
+            transition: var(--transicion);
+        }
+
+            .btn-volver:hover {
+                color: var(--verde-claro);
+                transform: translateX(-3px);
+            }
+
+        /* --- CONTENEDOR PRINCIPAL --- */
+        .container {
+            max-width: 1100px;
+            margin: 3rem auto;
+            padding: 0 2rem;
+        }
+
+        .propiedad-header {
+            margin-bottom: 2rem;
+        }
+
+            .propiedad-header h1 {
+                color: var(--verde-principal);
+                font-size: 2.5rem;
+                margin-bottom: 0.5rem;
+            }
+
+            .propiedad-header p {
+                color: var(--verde-claro);
+                font-weight: 500;
+                font-size: 1.1rem;
+            }
+
+        /* --- IMAGEN PRINCIPAL --- */
+        .main-img {
+            width: 100%;
+            height: 450px;
+            background: url('Donmiguel.jpeg') no-repeat center center/cover;
+            border-radius: 8px;
+            box-shadow: 0 4px 20px var(--sombra);
+            margin-bottom: 2.5rem;
+        }
+
+        /* --- ESTRUCTURA DE INFORMACIÓN --- */
+        .info-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 2.5rem;
+        }
+
+        /* Bloque Izquierdo: Descripción y Desplegables */
+        .descripcion-block {
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+        }
+
+        .card-info-interior {
+            background: var(--blanco);
+            padding: 2.5rem;
+            border-radius: 8px;
+            box-shadow: 0 4px 15px var(--sombra);
+        }
+
+            .card-info-interior h3 {
+                color: var(--verde-principal);
+                font-size: 1.4rem;
+                margin-bottom: 1.2rem;
+                border-bottom: 2px solid var(--beige-fuerte);
+                padding-bottom: 0.5rem;
+            }
+
+            .card-info-interior p {
+                margin-bottom: 1rem;
+                color: #555;
+                text-align: justify;
+            }
+
+        /* --- ESTILOS DE PESTAÑAS DESPLEGABLES --- */
+        details {
+            background: var(--blanco);
+            border-radius: 8px;
+            box-shadow: 0 4px 15px var(--sombra);
+            margin-bottom: 1rem;
+            overflow: hidden;
+            transition: var(--transicion);
+            border: 1px solid transparent;
+        }
+
+            details[open] {
+                border-color: var(--verde-claro);
+            }
+
+        summary {
+            padding: 1.5rem;
+            font-size: 1.2rem;
+            font-weight: bold;
+            color: var(--verde-principal);
+            cursor: pointer;
+            list-style: none;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: var(--blanco);
+            user-select: none;
+        }
+
+            summary:hover {
+                background-color: var(--beige-fondo);
+            }
+
+            /* Icono de flecha de FontAwesome */
+            summary::after {
+                content: '\f078';
+                font-family: 'Font Awesome 6 Free';
+                font-weight: 900;
+                transition: transform 0.3s ease;
+                font-size: 1rem;
+                color: var(--verde-claro);
+            }
+
+        details[open] summary::after {
+            transform: rotate(180deg);
+        }
+
+        .desplegable-contenido {
+            padding: 0 2rem 2rem 2rem;
+            background-color: var(--blanco);
+        }
+
+        .lista-detalles {
+            list-style: none;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 0.8rem;
+        }
+
+            .lista-detalles li {
+                padding: 0.5rem 0;
+                border-bottom: 1px solid rgba(0, 0, 0, 0.04);
+                font-size: 0.95rem;
+                color: #444;
+                display: flex;
+                align-items: flex-start;
+                gap: 0.6rem;
+            }
+
+                .lista-detalles li i {
+                    color: var(--verde-claro);
+                    margin-top: 0.2rem;
+                    font-size: 0.85rem;
+                }
+
+        /* Bloque Derecho: Ficha Técnica y Contacto */
+        .sidebar {
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+        }
+
+        .ficha-tecnica {
+            background: var(--beige-fuerte);
+            padding: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 4px 15px var(--sombra);
+            position: sticky;
+            top: 100px;
+        }
+
+            .ficha-tecnica h3 {
+                color: var(--verde-principal);
+                font-size: 1.3rem;
+                margin-bottom: 1.2rem;
+                text-transform: uppercase;
+                letter-spacing: 0.5px;
+            }
+
+        .ficha-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 0.7rem 0;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.06);
+            font-size: 0.95rem;
+        }
+
+            .ficha-item:last-child {
+                border-bottom: none;
+            }
+
+            .ficha-item strong {
+                color: var(--verde-principal);
+            }
+
+        .btn-whatsapp-directo {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 0.8rem;
+            background-color: #25D366;
+            color: white;
+            text-align: center;
+            padding: 1.1rem;
+            font-weight: bold;
+            font-size: 1.1rem;
+            border-radius: 6px;
+            text-decoration: none;
+            box-shadow: 0 4px 12px rgba(37, 211, 102, 0.25);
+            transition: var(--transicion);
+            margin-top: 1.5rem;
+        }
+
+            .btn-whatsapp-directo:hover {
+                background-color: #1ebd58;
+                transform: translateY(-2px);
+                box-shadow: 0 6px 18px rgba(37, 211, 102, 0.35);
+            }
+
+        /* --- FOOTER --- */
+        footer {
+            background-color: var(--verde-principal);
+            color: var(--beige-fuerte);
+            text-align: center;
+            padding: 2rem;
+            margin-top: 5rem;
+            font-size: 0.9rem;
+        }
+
+        /* --- RESPONSIVE DESIGN --- */
+        @media (max-width: 768px) {
+            .info-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .lista-detalles {
+                grid-template-columns: 1fr;
+            }
+
+            .main-img {
+                height: 280px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <nav class="navbar">
+        <div class="logo">DE LOS RIOS S.A.</div>
+        <a href="index.html" class="btn-volver">
+            <i class="fa-solid fa-arrow-left"></i> Volver al Catálogo
+        </a>
+    </nav>
+
+    <div class="container">
+        <div class="propiedad-header">
+            <h1>Estancia Don Miguel</h1>
+            <p><i class="fa-solid fa-location-dot"></i> Quilino, Córdoba (A 170 km de Córdoba Capital)</p>
+        </div>
+
+        <div class="main-img"></div>
+
+        <div class="info-grid">
+
+            <!-- Columna de Datos y Listas Desplegables -->
+            <div class="descripcion-block">
+
+                <div class="card-info-interior">
+                    <h3>Descripción General</h3>
+                    <p>Estancia Don Miguel es un establecimiento rural de vanguardia productiva en la región de Quilino. Con un planteo de rolado selectivo ejecutado al 100%, el campo optimiza al máximo el aprovechamiento del suelo y el sombreado natural para ganadería intensiva.</p>
+                    <p>Destaca por su altísima autonomía estructural, integrando un feedlot de gran escala, un imponente sistema fotovoltaico de última generación para todas sus viviendas y un parque de maquinaria pesada completo preparado para el laboreo y distribución inmediata de alimento.</p>
+                </div>
+
+                <!-- PESTAÑA DESPLEGABLE: INSTALACIONES -->
+                <details>
+                    <summary>INSTALACIONES <i class="fa-solid fa-layer-group" style="font-size: 1rem; margin-left: 0.5rem; color: var(--verde-claro);"></i></summary>
+                    <div class="desplegable-contenido">
+                        <ul class="lista-detalles">
+                            <li><i class="fa-solid fa-circle-check"></i> Alambrado perimetral completo.</li>
+                            <li><i class="fa-solid fa-circle-check"></i> 14 Potreros (5 equipados con bebida).</li>
+                            <li><i class="fa-solid fa-circle-check"></i> Perforación a ~100 metros (Caudal: 4,500 L/h).</li>
+                            <li><i class="fa-solid fa-circle-check"></i> 4 Tanques Australianos de ~120,000 Litros.</li>
+                            <li><i class="fa-solid fa-circle-check"></i> 100% implantado con Gatton Panic y Buffel Texas.</li>
+                            <li><i class="fa-solid fa-circle-check"></i> Patio de comida y Galpón con fosa (Capacidad 4,500 L).</li>
+                            <li><i class="fa-solid fa-circle-check"></i> Chimango fosa con motor de 5HP.</li>
+                            <li><i class="fa-solid fa-circle-check"></i> 2 Chimangos para Silos.</li>
+                            <li><i class="fa-solid fa-circle-check"></i> 4 Silos de 90,000 Kg y 4 Silos de 40,000 Kg.</li>
+                            <li><i class="fa-solid fa-circle-check"></i> Capacidad total de acopio: 550,000 Kg.</li>
+                            <li><i class="fa-solid fa-circle-check"></i> Casa para Capataz (2 hab, cocina, baño y galería).</li>
+                            <li><i class="fa-solid fa-circle-check"></i> 2 Departamentos para puesteros con baño compartido.</li>
+                            <li><i class="fa-solid fa-circle-check"></i> 1 Casa familiar con dos habitaciones.</li>
+                            <li><i class="fa-solid fa-circle-check"></i> 1 Departamento con baño para puestero.</li>
+                            <li><i class="fa-solid fa-circle-check"></i> 1 Departamento con baño para veterinario.</li>
+                            <li><i class="fa-solid fa-circle-check"></i> Energía fotovoltaica con baterías de gel (Capacidad 7KVA) en todos los dptos y casas.</li>
+                            <li><i class="fa-solid fa-circle-check"></i> Antena con conectividad WiFi y Domo (Cámara de seguridad).</li>
+                            <li><i class="fa-solid fa-circle-check"></i> Báscula Magnino 2IX (3.20 metros) para camiones.</li>
+                            <li><i class="fa-solid fa-circle-check"></i> Instalaciones de Feedlot operativas.</li>
+                            <li><i class="fa-solid fa-circle-check"></i> Capacidad para 3,000 animales con comederos de cemento.</li>
+                            <li><i class="fa-solid fa-circle-check"></i> Manga de trabajo techada y bañadero para hacienda.</li>
+                            <li><i class="fa-solid fa-circle-check"></i> Balanza con capacidad para 6 animales.</li>
+                            <li><i class="fa-solid fa-circle-check"></i> 2 Represas de agua y ensenada de trabajo.</li>
+                            <li><i class="fa-solid fa-circle-check"></i> 2 Mixer horizontal Senor (Año 2014) y 1 Mixer Mainero (Año 2017).</li>
+                            <li><i class="fa-solid fa-circle-check"></i> Picadora de maíz y Mezclador Tecnocar.</li>
+                            <li><i class="fa-solid fa-circle-check"></i> Bobcat 650 (Año 2013) con trailer.</li>
+                            <li><i class="fa-solid fa-circle-check"></i> Hoyadora, zanjeadora y damper.</li>
+                            <li><i class="fa-solid fa-circle-check"></i> Galpón exclusivo para herramientas y galpón para máquinas.</li>
+                            <li><i class="fa-solid fa-circle-check"></i> Grupo electrógeno con trailer de 40KVA.</li>
+                        </ul>
+                    </div>
+                </details>
+
+                <!-- PESTAÑA DESPLEGABLE: MAQUINARIA Y HERRAMIENTAS -->
+                <details>
+                    <summary>MAQUINARIA Y HERRAMIENTAS <i class="fa-solid fa-tractor" style="font-size: 1rem; margin-left: 0.5rem; color: var(--verde-claro);"></i></summary>
+                    <div class="desplegable-contenido">
+                        <ul class="lista-detalles">
+                            <li><i class="fa-solid fa-wrench"></i> Tractor John Deere 5090 con pala (Año 2017).</li>
+                            <li><i class="fa-solid fa-wrench"></i> Pauny Evo 250 4x4 con circuito cerrado (Año 2014).</li>
+                            <li><i class="fa-solid fa-wrench"></i> Pauny Evo 540 4x4 con circuito cerrado, coberturas en las 4 ruedas, equipado con banderillero y sembrador eléctrico.</li>
+                            <li><i class="fa-solid fa-wrench"></i> Rastra de discos de 32 (Dos cuerpos).</li>
+                            <li><i class="fa-solid fa-wrench"></i> Rolo de alrededor de dos cuerpos con cuchillas móviles.</li>
+                            <li><i class="fa-solid fa-wrench"></i> Rolo para mantenimiento de renoval de 4 metros.</li>
+                            <li><i class="fa-solid fa-wrench"></i> Tanque cisterna acoplado de 30,000 Litros.</li>
+                            <li><i class="fa-solid fa-wrench"></i> Cisterna de gasoil de 3,000 Litros con caudalímetro y trailer.</li>
+                            <li><i class="fa-solid fa-wrench"></i> Estiercolera nueva.</li>
+                            <li><i class="fa-solid fa-wrench"></i> Fumigadora de arrastre (Capacidad 2,000 Litros).</li>
+                            <li><i class="fa-solid fa-wrench"></i> Cisterna de agua con trailer de 3,000 Litros.</li>
+                            <li><i class="fa-solid fa-wrench"></i> Chipiadora forestal profesional.</li>
+                            <li><i class="fa-solid fa-wrench"></i> Comedero de autoconsumo.</li>
+                            <li><i class="fa-solid fa-wrench"></i> Herramientas varias de taller.</li>
+                        </ul>
+                    </div>
+                </details>
+
+                <!-- PESTAÑA DESPLEGABLE: HACIENDA (LISTA PARA CARGAR) -->
+                <details>
+                    <summary>HACIENDA <i class="fa-solid fa-cow" style="font-size: 1.1rem; margin-left: 0.5rem; color: var(--verde-claro);"></i></summary>
+                    <div class="desplegable-contenido">
+                        <ul class="lista-detalles">
+                            <li><i class="fa-solid fa-angle-right"></i> Detalle de hacienda 1 (Editar cuando tengas los datos).</li>
+                            <li><i class="fa-solid fa-angle-right"></i> Detalle de hacienda 2 (Editar cuando tengas los datos).</li>
+                            <li><i class="fa-solid fa-angle-right"></i> Detalle de hacienda 3 (Editar cuando tengas los datos).</li>
+                        </ul>
+                    </div>
+                </details>
+
+            </div>
+
+            <!-- Ficha Técnica Fija en el lateral -->
+            <div class="sidebar">
+                <div class="ficha-tecnica">
+                    <h3>Ficha Técnica</h3>
+                    <div class="ficha-item">
+                        <strong>Superficie:</strong>
+                        <span>780 ha</span>
+                    </div>
+                    <div class="ficha-item">
+                        <strong>Rolado:</strong>
+                        <span>100% Selectivo</span>
+                    </div>
+                    <div class="ficha-item">
+                        <strong>Ubicación:</strong>
+                        <span>Quilino, Córdoba</span>
+                    </div>
+                    <div class="ficha-item">
+                        <strong>Distancia Capital:</strong>
+                        <span>170 Km</span>
+                    </div>
+                    <div class="ficha-item">
+                        <strong>Aptitud:</strong>
+                        <span>Ganadero / Feedlot</span>
+                    </div>
+                    <div class="ficha-item">
+                        <strong>Precio:</strong>
+                        <span style="font-weight: bold; color: var(--texto-oscuro);">Consulte Precio</span>
+                    </div>
+
+                    <a href="https://wa.me/5493514035617?text=Hola%2C%20me%20presento.%20Me%20interesa%20obtener%20m%C3%A1s%20informaci%C3%B3n%20y%20detalles%20sobre%20la%20Estancia%20Don%20Miguel%20en%20Quilino." target="_blank" class="btn-whatsapp-directo">
+                        <i class="fa-brands fa-whatsapp"></i> Consultar por WhatsApp
+                    </a>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <footer>
+        <p>&copy; 2026 DE LOS RIOS S.A. Negocios Rurales. Todos los derechos reservados.</p>
+    </footer>
+
+</body>
+</html>
