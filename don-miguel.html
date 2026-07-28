@@ -9,8 +9,11 @@
     <!-- Logo del Tractor en la pestaña -->
     <link rel="icon" type="image/jpeg" href="logo-tractor.jpg">
 
+    <!-- Librería para generación automática de PDF -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+
     <style>
-        /* --- VARIABLES DE DISEÑO (Misma Paleta Campestre) --- */
+        /* --- VARIABLES DE DISEÑO --- */
         :root {
             --verde-principal: #2c4a3e;
             --verde-claro: #4a6b5d;
@@ -56,19 +59,29 @@
             letter-spacing: 1.5px;
         }
 
-        .btn-volver {
+        .nav-acciones {
+            display: flex;
+            gap: 1.5rem;
+            align-items: center;
+        }
+
+        .btn-nav {
             color: var(--verde-principal);
             font-weight: bold;
             display: flex;
             align-items: center;
             gap: 0.5rem;
             text-decoration: none;
+            background: none;
+            border: none;
+            cursor: pointer;
+            font-size: 0.95rem;
             transition: var(--transicion);
         }
 
-        .btn-volver:hover {
+        .btn-nav:hover {
             color: var(--verde-claro);
-            transform: translateX(-3px);
+            transform: translateY(-1px);
         }
 
         /* --- CONTENEDOR PRINCIPAL --- */
@@ -148,6 +161,7 @@
             overflow: hidden;
             transition: var(--transicion);
             border: 1px solid transparent;
+            page-break-inside: avoid;
         }
 
         details[open] {
@@ -172,7 +186,6 @@
             background-color: var(--beige-fondo);
         }
 
-        /* Icono de flecha de FontAwesome */
         summary::after {
             content: '\f078';
             font-family: 'Font Awesome 6 Free';
@@ -206,6 +219,7 @@
             display: flex;
             align-items: flex-start;
             gap: 0.6rem;
+            page-break-inside: avoid;
         }
 
         .lista-detalles li i {
@@ -214,7 +228,7 @@
             font-size: 0.85rem;
         }
 
-        /* --- OPCIÓN 1: GALERÍA DE MINICARÁTULAS EN LA PESTAÑA --- */
+        /* --- GALERÍA DE MINICARÁTULAS EN LA PESTAÑA --- */
         .galeria-herramientas {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(110px, 1fr));
@@ -241,7 +255,6 @@
             box-shadow: 0 4px 10px var(--sombra);
         }
 
-        /* --- OPCIÓN 2: ENLACE / BOTÓN DISCRETO TIPO ÁLBUM --- */
         .btn-ver-album {
             display: inline-flex;
             align-items: center;
@@ -264,30 +277,43 @@
             color: var(--blanco);
         }
 
-        /* --- VISOR MODAL (LIGHTBOX SIN LIBRERÍAS EXTERNAS) --- */
-        .modal-visor {
-            border: none;
-            border-radius: 8px;
-            padding: 0;
-            margin: auto;
-            background: transparent;
+        /* --- VISOR MODAL --- */
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background: rgba(0, 0, 0, 0.85);
+            backdrop-filter: blur(4px);
+            display: none;
+            justify-content: center;
+            align-items: center;
+            z-index: 2000;
+        }
+
+        .modal-overlay.active {
+            display: flex;
+        }
+
+        .modal-contenido {
+            position: relative;
             max-width: 90vw;
             max-height: 90vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            background: #000;
+            border-radius: 8px;
+            overflow: hidden;
             box-shadow: 0 10px 30px rgba(0,0,0,0.5);
         }
 
-        .modal-visor::backdrop {
-            background: rgba(0, 0, 0, 0.75);
-            backdrop-filter: blur(3px);
-        }
-
-        .modal-visor img {
+        .modal-contenido img {
             max-width: 90vw;
             max-height: 80vh;
-            display: block;
-            border-radius: 8px 8px 0 0;
             object-fit: contain;
-            background-color: #000;
+            display: block;
         }
 
         .modal-cerrar {
@@ -299,7 +325,6 @@
             cursor: pointer;
             font-weight: bold;
             font-size: 0.95rem;
-            border-radius: 0 0 8px 8px;
             transition: var(--transicion);
         }
 
@@ -381,6 +406,24 @@
             font-size: 0.9rem;
         }
 
+        /* --- AJUSTES EXCLUSIVOS DE IMPRESIÓN --- */
+        @media print {
+            .navbar, .btn-whatsapp-directo, .btn-ver-album, .galeria-herramientas, footer {
+                display: none !important;
+            }
+            body {
+                background-color: #fff;
+            }
+            .container {
+                max-width: 100%;
+                margin: 0;
+                padding: 0;
+            }
+            details {
+                border: 1px solid #ccc !important;
+            }
+        }
+
         /* --- RESPONSIVE DESIGN --- */
         @media (max-width: 768px) {
             .info-grid {
@@ -401,12 +444,17 @@
 
     <nav class="navbar">
         <div class="logo">DE LOS RIOS S.A.</div>
-        <a href="index.html" class="btn-volver">
-            <i class="fa-solid fa-arrow-left"></i> Volver al Catálogo
-        </a>
+        <div class="nav-acciones">
+            <button onclick="descargarPDF()" class="btn-nav">
+                <i class="fa-solid fa-file-pdf"></i> Descargar PDF
+            </button>
+            <a href="index.html" class="btn-nav">
+                <i class="fa-solid fa-arrow-left"></i> Volver al Catálogo
+            </a>
+        </div>
     </nav>
 
-    <div class="container">
+    <div class="container" id="contenido-pdf">
         <div class="propiedad-header">
             <h1>Estancia Don Miguel</h1>
             <p><i class="fa-solid fa-location-dot"></i> Quilino, Córdoba (A 170 km de Córdoba Capital)</p>
@@ -485,7 +533,6 @@
                             <li><i class="fa-solid fa-wrench"></i> Herramientas varias de taller.</li>
                         </ul>
 
-                        <!-- OPCIÓN 1: MINICARÁTULAS DE IMÁGENES -->
                         <p style="margin-top: 1.5rem; font-size: 0.85rem; color: var(--verde-claro); font-weight: bold;">
                             <i class="fa-solid fa-camera"></i> Galería fotográfica (Haz clic para ampliar):
                         </p>
@@ -502,7 +549,6 @@
                             <img src="posdesmonte.jpeg" class="foto-item" alt="Posdesmonte" onclick="abrirFoto(this.src)">
                         </div>
 
-                        <!-- OPCIÓN 2: ENLACE TIPO BOTÓN A IMAGEN O ÁLBUM UNIFICADO -->
                         <div style="margin-top: 0.8rem;">
                             <a href="javascript:void(0)" class="btn-ver-album" onclick="abrirFoto('parque-maquinarias-completo.jpg')">
                                 <i class="fa-regular fa-images"></i> Ver foto panorámica del parque de maquinaria completo
@@ -564,24 +610,64 @@
         </div>
     </div>
 
-    <!-- VISOR MODAL EN PANTALLA COMPLETA -->
-    <dialog id="visorModal" class="modal-visor">
-        <img id="fotoGrande" src="" alt="Vista ampliada">
-        <button class="modal-cerrar" onclick="document.getElementById('visorModal').close()">
-            <i class="fa-solid fa-xmark"></i> Cerrar Imagen
-        </button>
-    </dialog>
+    <!-- VISOR MODAL -->
+    <div id="visorModal" class="modal-overlay" onclick="cerrarFotoExterna(event)">
+        <div class="modal-contenido">
+            <img id="fotoGrande" src="" alt="Vista ampliada">
+            <button class="modal-cerrar" onclick="cerrarFoto()">
+                <i class="fa-solid fa-xmark"></i> Cerrar Imagen
+            </button>
+        </div>
+    </div>
 
     <footer>
         <p>&copy; 2026 DE LOS RIOS S.A. Negocios Rurales. Todos los derechos reservados.</p>
     </footer>
 
-    <!-- SCRIPT DE NAVEGACIÓN -->
+    <!-- SCRIPT DE INTERACCIÓN Y GENERACIÓN PDF -->
     <script>
         function abrirFoto(src) {
             const modal = document.getElementById('visorModal');
-            document.getElementById('fotoGrande').src = src;
-            modal.showModal();
+            const img = document.getElementById('fotoGrande');
+            img.src = src;
+            modal.classList.add('active');
+        }
+
+        function cerrarFoto() {
+            const modal = document.getElementById('visorModal');
+            modal.classList.remove('active');
+        }
+
+        function cerrarFotoExterna(event) {
+            if (event.target.id === 'visorModal') {
+                cerrarFoto();
+            }
+        }
+
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') {
+                cerrarFoto();
+            }
+        });
+
+        // FUNCIÓN PARA DESCARGAR PDF
+        function descargarPDF() {
+            // Desplegar todas las pestañas para que salgan completas en el PDF
+            const desplegables = document.querySelectorAll('details');
+            desplegables.forEach(d => d.open = true);
+
+            const elemento = document.getElementById('contenido-pdf');
+            
+            const opciones = {
+                margin:       [10, 10, 10, 10],
+                filename:     'Estancia_Don_Miguel_DELOSRIOS.pdf',
+                image:        { type: 'jpeg', quality: 0.98 },
+                html2canvas:  { scale: 2, useCORS: true, logging: false },
+                jsPDF:        { unit: 'mm', format: 'a4', orientation: 'portrait' },
+                pagebreak:    { mode: ['avoid-all', 'css', 'legacy'] }
+            };
+
+            html2pdf().set(opciones).from(elemento).save();
         }
     </script>
 
