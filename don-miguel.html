@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="es">
 <head>
     <meta charset="UTF-8">
@@ -66,10 +66,10 @@
             transition: var(--transicion);
         }
 
-            .btn-volver:hover {
-                color: var(--verde-claro);
-                transform: translateX(-3px);
-            }
+        .btn-volver:hover {
+            color: var(--verde-claro);
+            transform: translateX(-3px);
+        }
 
         /* --- CONTENEDOR PRINCIPAL --- */
         .container {
@@ -82,17 +82,17 @@
             margin-bottom: 2rem;
         }
 
-            .propiedad-header h1 {
-                color: var(--verde-principal);
-                font-size: 2.5rem;
-                margin-bottom: 0.5rem;
-            }
+        .propiedad-header h1 {
+            color: var(--verde-principal);
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+        }
 
-            .propiedad-header p {
-                color: var(--verde-claro);
-                font-weight: 500;
-                font-size: 1.1rem;
-            }
+        .propiedad-header p {
+            color: var(--verde-claro);
+            font-weight: 500;
+            font-size: 1.1rem;
+        }
 
         /* --- IMAGEN PRINCIPAL --- */
         .main-img {
@@ -125,19 +125,19 @@
             box-shadow: 0 4px 15px var(--sombra);
         }
 
-            .card-info-interior h3 {
-                color: var(--verde-principal);
-                font-size: 1.4rem;
-                margin-bottom: 1.2rem;
-                border-bottom: 2px solid var(--beige-fuerte);
-                padding-bottom: 0.5rem;
-            }
+        .card-info-interior h3 {
+            color: var(--verde-principal);
+            font-size: 1.4rem;
+            margin-bottom: 1.2rem;
+            border-bottom: 2px solid var(--beige-fuerte);
+            padding-bottom: 0.5rem;
+        }
 
-            .card-info-interior p {
-                margin-bottom: 1rem;
-                color: #555;
-                text-align: justify;
-            }
+        .card-info-interior p {
+            margin-bottom: 1rem;
+            color: #555;
+            text-align: justify;
+        }
 
         /* --- ESTILOS DE PESTAÑAS DESPLEGABLES --- */
         details {
@@ -150,9 +150,9 @@
             border: 1px solid transparent;
         }
 
-            details[open] {
-                border-color: var(--verde-claro);
-            }
+        details[open] {
+            border-color: var(--verde-claro);
+        }
 
         summary {
             padding: 1.5rem;
@@ -168,19 +168,19 @@
             user-select: none;
         }
 
-            summary:hover {
-                background-color: var(--beige-fondo);
-            }
+        summary:hover {
+            background-color: var(--beige-fondo);
+        }
 
-            /* Icono de flecha de FontAwesome */
-            summary::after {
-                content: '\f078';
-                font-family: 'Font Awesome 6 Free';
-                font-weight: 900;
-                transition: transform 0.3s ease;
-                font-size: 1rem;
-                color: var(--verde-claro);
-            }
+        /* Icono de flecha de FontAwesome */
+        summary::after {
+            content: '\f078';
+            font-family: 'Font Awesome 6 Free';
+            font-weight: 900;
+            transition: transform 0.3s ease;
+            font-size: 1rem;
+            color: var(--verde-claro);
+        }
 
         details[open] summary::after {
             transform: rotate(180deg);
@@ -198,23 +198,116 @@
             gap: 0.8rem;
         }
 
-            .lista-detalles li {
-                padding: 0.5rem 0;
-                border-bottom: 1px solid rgba(0, 0, 0, 0.04);
-                font-size: 0.95rem;
-                color: #444;
-                display: flex;
-                align-items: flex-start;
-                gap: 0.6rem;
-            }
+        .lista-detalles li {
+            padding: 0.5rem 0;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.04);
+            font-size: 0.95rem;
+            color: #444;
+            display: flex;
+            align-items: flex-start;
+            gap: 0.6rem;
+        }
 
-                .lista-detalles li i {
-                    color: var(--verde-claro);
-                    margin-top: 0.2rem;
-                    font-size: 0.85rem;
-                }
+        .lista-detalles li i {
+            color: var(--verde-claro);
+            margin-top: 0.2rem;
+            font-size: 0.85rem;
+        }
 
-        /* Bloque Derecho: Ficha Técnica y Contacto */
+        /* --- OPCIÓN 1: GALERÍA DE MINICARÁTULAS EN LA PESTAÑA --- */
+        .galeria-herramientas {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(110px, 1fr));
+            gap: 0.8rem;
+            margin-top: 1.2rem;
+            padding-top: 1rem;
+            border-top: 1px dashed var(--beige-fuerte);
+        }
+
+        .foto-item {
+            width: 100%;
+            height: 80px;
+            object-fit: cover;
+            border-radius: 6px;
+            cursor: pointer;
+            filter: opacity(0.9);
+            transition: var(--transicion);
+            border: 1px solid rgba(0, 0, 0, 0.08);
+        }
+
+        .foto-item:hover {
+            filter: opacity(1);
+            transform: scale(1.04);
+            box-shadow: 0 4px 10px var(--sombra);
+        }
+
+        /* --- OPCIÓN 2: ENLACE / BOTÓN DISCRETO TIPO ÁLBUM --- */
+        .btn-ver-album {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.6rem;
+            margin-top: 1.2rem;
+            padding: 0.6rem 1.2rem;
+            background-color: var(--beige-fuerte);
+            color: var(--verde-principal);
+            font-weight: bold;
+            font-size: 0.9rem;
+            border-radius: 6px;
+            text-decoration: none;
+            transition: var(--transicion);
+            cursor: pointer;
+            border: 1px solid rgba(0,0,0,0.05);
+        }
+
+        .btn-ver-album:hover {
+            background-color: var(--verde-principal);
+            color: var(--blanco);
+        }
+
+        /* --- VISOR MODAL (LIGHTBOX SIN LIBRERÍAS EXTERNAS) --- */
+        .modal-visor {
+            border: none;
+            border-radius: 8px;
+            padding: 0;
+            margin: auto;
+            background: transparent;
+            max-width: 90vw;
+            max-height: 90vh;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+        }
+
+        .modal-visor::backdrop {
+            background: rgba(0, 0, 0, 0.75);
+            backdrop-filter: blur(3px);
+        }
+
+        .modal-visor img {
+            max-width: 90vw;
+            max-height: 80vh;
+            display: block;
+            border-radius: 8px 8px 0 0;
+            object-fit: contain;
+            background-color: #000;
+        }
+
+        .modal-cerrar {
+            background: var(--verde-principal);
+            color: var(--blanco);
+            border: none;
+            width: 100%;
+            padding: 0.8rem;
+            cursor: pointer;
+            font-weight: bold;
+            font-size: 0.95rem;
+            border-radius: 0 0 8px 8px;
+            transition: var(--transicion);
+        }
+
+        .modal-cerrar:hover {
+            background: var(--verde-claro);
+        }
+
+        /* --- BLOQUE DERECHO: FICHA TÉCNICA Y CONTACTO --- */
         .sidebar {
             display: flex;
             flex-direction: column;
@@ -230,13 +323,13 @@
             top: 100px;
         }
 
-            .ficha-tecnica h3 {
-                color: var(--verde-principal);
-                font-size: 1.3rem;
-                margin-bottom: 1.2rem;
-                text-transform: uppercase;
-                letter-spacing: 0.5px;
-            }
+        .ficha-tecnica h3 {
+            color: var(--verde-principal);
+            font-size: 1.3rem;
+            margin-bottom: 1.2rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
 
         .ficha-item {
             display: flex;
@@ -246,13 +339,13 @@
             font-size: 0.95rem;
         }
 
-            .ficha-item:last-child {
-                border-bottom: none;
-            }
+        .ficha-item:last-child {
+            border-bottom: none;
+        }
 
-            .ficha-item strong {
-                color: var(--verde-principal);
-            }
+        .ficha-item strong {
+            color: var(--verde-principal);
+        }
 
         .btn-whatsapp-directo {
             display: flex;
@@ -272,11 +365,11 @@
             margin-top: 1.5rem;
         }
 
-            .btn-whatsapp-directo:hover {
-                background-color: #1ebd58;
-                transform: translateY(-2px);
-                box-shadow: 0 6px 18px rgba(37, 211, 102, 0.35);
-            }
+        .btn-whatsapp-directo:hover {
+            background-color: #1ebd58;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 18px rgba(37, 211, 102, 0.35);
+        }
 
         /* --- FOOTER --- */
         footer {
@@ -390,10 +483,29 @@
                             <li><i class="fa-solid fa-wrench"></i> Comedero de autoconsumo.</li>
                             <li><i class="fa-solid fa-wrench"></i> Herramientas varias de taller.</li>
                         </ul>
+
+                        <!-- OPCIÓN 1: MINICARÁTULAS DE IMÁGENES -->
+                        <p style="margin-top: 1.5rem; font-size: 0.85rem; color: var(--verde-claro); font-weight: bold;">
+                            <i class="fa-solid fa-camera"></i> Galería fotográfica (Haz clic para ampliar):
+                        </p>
+                        <div class="galeria-herramientas">
+                            <img src="tractor-johndeere.jpg" class="foto-item" alt="Tractor John Deere" onclick="abrirFoto(this.src)">
+                            <img src="pauny-evo.jpg" class="foto-item" alt="Pauny Evo" onclick="abrirFoto(this.src)">
+                            <img src="rolo-mantenimiento.jpg" class="foto-item" alt="Rolo" onclick="abrirFoto(this.src)">
+                            <img src="cisterna-gasoil.jpg" class="foto-item" alt="Cisterna" onclick="abrirFoto(this.src)">
+                        </div>
+
+                        <!-- OPCIÓN 2: ENLACE TIPO BOTÓN A IMAGEN O ÁLBUM UNIFICADO -->
+                        <div style="margin-top: 0.8rem;">
+                            <a href="javascript:void(0)" class="btn-ver-album" onclick="abrirFoto('parque-maquinarias-completo.jpg')">
+                                <i class="fa-regular fa-images"></i> Ver foto panorámica del parque de maquinaria completo
+                            </a>
+                        </div>
+
                     </div>
                 </details>
 
-                <!-- PESTAÑA DESPLEGABLE: HACIENDA (LISTA PARA CARGAR) -->
+                <!-- PESTAÑA DESPLEGABLE: HACIENDA -->
                 <details>
                     <summary>HACIENDA <i class="fa-solid fa-cow" style="font-size: 1.1rem; margin-left: 0.5rem; color: var(--verde-claro);"></i></summary>
                     <div class="desplegable-contenido">
@@ -445,9 +557,26 @@
         </div>
     </div>
 
+    <!-- VISOR MODAL EN PANTALLA COMPLETA -->
+    <dialog id="visorModal" class="modal-visor">
+        <img id="fotoGrande" src="" alt="Vista ampliada">
+        <button class="modal-cerrar" onclick="document.getElementById('visorModal').close()">
+            <i class="fa-solid fa-xmark"></i> Cerrar Imagen
+        </button>
+    </dialog>
+
     <footer>
         <p>&copy; 2026 DE LOS RIOS S.A. Negocios Rurales. Todos los derechos reservados.</p>
     </footer>
+
+    <!-- SCRIPT DE NAVEGACIÓN -->
+    <script>
+        function abrirFoto(src) {
+            const modal = document.getElementById('visorModal');
+            document.getElementById('fotoGrande').src = src;
+            modal.showModal();
+        }
+    </script>
 
 </body>
 </html>
